@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyasu Begashaw - AI Chat Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f7f9fb, #e0e7ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .coming-soon-container {
+            max-width: 700px;
+            width: 90%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin: 20px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .coming-soon-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .coming-soon-header p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .coming-soon-icon {
+            font-size: 4rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .coming-soon-text {
+            font-size: 1.1rem;
+            color: #1e293b;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+        }
+        .back-link:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .coming-soon-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            .coming-soon-header h2 {
+                font-size: 2.2rem;
+            }
+            .coming-soon-header p {
+                font-size: 1rem;
+            }
+            .coming-soon-icon {
+                font-size: 3rem;
+            }
+            .back-link {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="coming-soon-container">
+        <div class="coming-soon-header">
+            <i class="fas fa-robot coming-soon-icon"></i>
+            <h2>AI Chat Assistant</h2>
+            <p>Coming Soon</p>
+        </div>
+        <div class="coming-soon-text">
+            We’re crafting a divine AI experience to guide you through Eyasu Begashaw’s world of architecture, design, and motion graphics. Stay tuned—great things are on the horizon! In the meantime, explore his portfolio or reach out via contact details.
+        </div>
+        <a href="index.html" class="back-link">Back to Portfolio</a>
+    </div>
+</body>
+</html>

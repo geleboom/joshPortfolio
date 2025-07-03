@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyasu Begashaw - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            background: linear-gradient(to bottom, #f7f7f7, #e5e7eb);
+        }
+
+        /* Beautiful Navbar with Enhanced Design */
+        nav {
+            background: black;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+            top: 0;
+            height: 40px;
+            transition: all 0.4s ease;
+        }
+        nav:hover {
+            background: linear-gradient(135deg, rgba(222, 224, 226, 0.95), rgba(218, 216, 221, 0.95));
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+        nav .container {
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            position: relative;
+            padding: 0.25rem;
+        }
+        nav .logo img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            background: white;
+            padding: 2px;
+        }
+        nav .logo img:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        nav .logo .fallback {
+            display: none;
+            height: 45px;
+            width: 45px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 45px;
+            color: #4b5563;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            padding: 2px;
+        }
+        nav .logo.no-image .fallback {
+            display: block;
+        }
+        nav .logo.no-image img {
+            display: none;
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        nav ul li {
+            border: 2px solid transparent;
+            border-radius: 4px;
+            margin-left: 0.25rem;
+            background: white;
+            padding: 0 2px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        nav ul li:hover {
+            border-color: rgba(52, 211, 153, 0.4);
+            transform: translateY(-2px);
+        }
+        nav ul li a {
+            font-size: 0.9rem;
+            padding: 0.5rem 0.75rem;
+            color: black;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #34d399;
+            transform: translateY(-3px);
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: #34d399;
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section offset to avoid navbar overlap */
+        #home {
+            padding-top: 3.5rem; /* Adjusted for enhanced navbar height */
+        }
+
+        /* Profile image styling with fallback and glow effect */
+        .profile-img-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1.5rem;
+            z-index: 1;
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        }
+        .profile-img-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+        }
+        .profile-img-container .fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #e5e7eb;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 160px;
+            color: #4b5563;
+        }
+        .profile-img-container.no-image .fallback {
+            display: block;
+        }
+        .profile-img-container.no-image img {
+            display: none;
+        }
+
+        /* Hero Section with Custom Background Image */
+        #home {
+            background: url('background-image.jpg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Overlay for better text readability */
+            z-index: 0;
+        }
+        #home > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section with New Background Image */
+        #about {
+            background: url('bg3.jpg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Overlay for text readability */
+            z-index: 0;
+        }
+        #about > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Info Box */
+        .about-info-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        /* Typewriter effect with smoother transition */
+        .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
+        .blinking-cursor {
+            border-left: 2px solid white;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Scroll down indicator animation */
+        .scroll-indicator {
+            animation: scrollDown 1.5s infinite;
+        }
+        @keyframes scrollDown {
+            0%, 20% { transform: translateY(0); opacity: 1; }
+            40% { transform: translateY(20px); opacity: 0.5; }
+            60%, 100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Enhanced Call-to-Action Button */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .cta-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Project card styling with new design */
+        .project-card {
+            background: linear-gradient(to right, #e0e7ff, #c7d2fe);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .project-card img {
+            width: 100%;
+            height: 256px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        .project-card .content {
+            padding: 1.5rem;
+        }
+        .project-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: #1e293b;
+        }
+        .project-card p {
+            color: #475569;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+        .project-card a {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .project-card a:hover {
+            background: #2563eb;
+        }
+
+        /* Project Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ef4444;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact section styling */
+        #contact .get-in-touch {
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        #contact .get-in-touch::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+        #contact .social-link {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        #contact .social-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        #contact .social-link:hover .social-icon {
+            transform: scale(1.1);
+            background: #dbeafe;
+        }
+        #contact .social-icon i {
+            font-size: 1.5rem;
+        }
+
+        /* CV modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Download Button Styling */
+        .download-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: #34d399;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+        .download-btn:hover {
+            background: #2dd4bf;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 0.5rem 0.75rem;
+            }
+            nav .logo img {
+                height: 35px;
+            }
+            nav .logo .fallback {
+                height: 35px;
+                line-height: 35px;
+                width: 35px;
+            }
+            nav ul li {
+                margin-left: 0.15rem;
+                border-width: 1px;
+                padding: 0 1px;
+            }
+            nav ul li a {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.5rem;
+            }
+            #home {
+                padding-top: 3rem; /* Adjusted for smaller screens */
+            }
+            .profile-img-container {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-img-container .fallback {
+                line-height: 120px;
+            }
+            .project-card img {
+                height: 200px;
+            }
+            .project-card .content {
+                padding: 1rem;
+            }
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+            .project-modal .modal-content {
+                max-width: 95%;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            #about img {
+                max-width: 100%;
+            }
+            #contact .social-link {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+            #contact .social-icon {
+                width: 40px;
+                height: 40px;
+            }
+            .about-info-box {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Beautiful Navbar with Logo and Bordered List Items -->
+    <nav>
+        <div class="container mx-auto flex justify-between items-center">
+            <ul class="flex space-x-4">
+                <li><a href="#home" class="text-gray-600 hover:text-blue-500 smooth-scroll">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-blue-500 smooth-scroll">About</a></li>
+                <li><a href="#projects" class="text-gray-600 hover:text-blue-500 smooth-scroll">Projects</a></li>
+                <li><a href="#cv" class="text-gray-600 hover:text-blue-500 cv-link">View CV</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-blue-500 smooth-scroll">Contact</a></li>
+            </ul>
+            <div class="logo">
+                <img src="logo.jpg" alt="Eyasu Begashaw Logo" onerror="this.parentElement.classList.add('no-image');">
+                <div class="fallback">Logo</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section with Custom Background -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center flex flex-col items-center">
+            <div class="profile-img-container group transition-transform duration-300">
+                <img src="josh.jpg" alt="Eyasu Begashaw" onerror="this.parentElement.classList.add('no-image');">
+                <div class="fallback">Image not available</div>
+                <div class="absolute inset-0 rounded-full border-4 border-blue-400 opacity-60 animate-pulse pointer-events-none"></div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg text-white">Eyasu Begashaw</h1>
+            <div class="text-xl md:text-2xl mb-6 min-h-[2.5rem] flex items-center justify-center">
+                <span id="typewriter" class="typewriter-text font-semibold text-white"></span>
+                <span class="blinking-cursor ml-1"></span>
+            </div>
+            <a href="#projects" class="cta-button bg-white text-blue-500 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-100 hover:scale-105 transition-all duration-300 animate-bounce inline-block mb-8 smooth-scroll">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-6 md:mb-0">
+                    <img src="josh.jpg" alt="Eyasu Begashaw" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2 md:pl-10">
+                    <div class="about-info-box">
+                        <p class="text-lg text-gray-700 mb-4">
+                            I'm Eyasu Begashaw, a passionate architect with a degree in Architecture and extensive expertise in graphic design and motion graphics. My work blends creativity and technical precision, delivering visually stunning solutions for various institutions. From architectural designs to dynamic motion graphics, I bring ideas to life with a focus on innovation and quality.
+                        </p>
+                        <p class="text-lg text-gray-700">
+                            My skills include Adobe Creative Suite (Photoshop, Illustrator, After Effects), 3D modeling (AutoCAD, SketchUp, Revit, Archicad), and more. Explore my projects to see how I transform concepts into reality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Modal -->
+    <div id="cvModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal cursor-pointer text-2xl">×</span>
+            <img src="cv.jpg" alt="My CV" class="w-full">
+            <a href="cv.jpg" download="Eyasu_Begashaw_CV.jpg" class="download-btn">Download CV</a>
+        </div>
+    </div>
+
+    <!-- Projects Section with New Design -->
+    <section id="projects" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                <div class="project-card">
+                    <img src="cultural-center-design.jpg" alt="Cultural Center Design" class="w-full h-64 object-cover">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2">Architectural Masterpiece for Institution X</h3>
+                        <p class="text-gray-600 mb-4">
+                            Designed a state-of-the-art cultural center for Institution X, featuring sustainable materials and innovative spatial planning. This project, now presented with a modern gradient card design, highlights a harmonious blend of contemporary architecture and eco-friendly principles, enhanced by sleek visuals and interactive hover effects.
+                        </p>
+                        <a href="#" class="view-project inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" data-project="cultural-center">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="motion-graphics-campaign.jpg" alt="Motion Graphics Campaign" class="w-full h-64 object-cover">
+                    <div class="content">
+                        <h3 class="text-2xl font-semibold mb-2">Motion Graphics Campaign for Brand Y</h3>
+                        <p class="text-gray-600 mb-4">
+                            Developed a dynamic motion graphics series for Brand Y’s global marketing campaign, boosting brand engagement with captivating animations and storytelling. The updated gradient card design with enhanced hover effects brings this project to life, showcasing its vibrant creativity and professional polish.
+                        </p>
+                        <a href="#" class="view-project inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" data-project="motion-graphics">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="https://t.me/josharc1377" target="_blank" class="inline-block px-6 py-3 bg-purple-500 text-white rounded-full font-semibold hover:bg-purple-600">
+                    View More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <div class="modal-content">
+            <span class="close-modal cursor-pointer text-2xl">×</span>
+            <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+            <div id="project-gallery" class="gallery"></div>
+        </div>
+    </div>
+
+    <!-- Contact Section with Chatbot Link -->
+    <section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8 text-center">
+                <h2 class="text-4xl font-bold mb-6 relative inline-block get-in-touch">Get in Touch</h2>
+                <p class="text-lg text-gray-700 mb-8">Interested in chatting? Use our AI assistant!</p>
+                <a href="chatbot.html" class="inline-block px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600">Chat with AI Assistant</a>
+                <p class="text-lg text-gray-700 mt-8 mb-8">Or reach out via social media!</p>
+                <div class="mb-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                        <a href="eyasubegashaw2@gmail.com" class="social-link flex flex-col items-center text-gray-600 hover:text-blue-500">
+                            <div class="social-icon bg-blue-100 rounded-full p-3 mb-2">
+                                <i class="fas fa-envelope text-blue-500"></i>
+                            </div>
+                            Email
+                        </a>
+                        <a href="https://www.linkedin.com/in/josh-ye-kirstos-a09b82322?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B%2BKTTeYbMTXeq5zI8%2F2yF7Q%3D%3D" class="social-link flex flex-col items-center text-gray-600 hover:text-blue-500">
+                            <div class="social-icon bg-blue-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-instagram text-pink-500"></i>
+                            </div>
+                            Instagram
+                        </a>
+                        <a href="https://www.pinterest.com/eyasubegashaw2/" class="social-link flex flex-col items-center text-gray-600 hover:text-blue-500">
+                            <div class="social-icon bg-blue-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-pinterest text-blue-500"></i>
+                            </div>
+                            Pinterest
+                        </a>
+                        <a href="https://t.me/Josh_37" class="social-link flex flex-col items-center text-gray-600 hover:text-blue-500">
+                            <div class="social-icon bg-blue-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-telegram text-blue-500"></i>
+                            </div>
+                            Telegram
+                        </a>
+                        <a href="https://web.facebook.com/share/p/1Yd43iXPXP/" class="social-link flex flex-col items-center text-gray-600 hover:text-blue-500">
+                            <div class="social-icon bg-blue-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-facebook text-blue-500"></i>
+                            </div>
+                            Facebook
+                        </a>
+                        <a href="https://youtu.be/YgetiNkVyfM?si=I6kCoGxzD5S8_AOO" class="social-link flex flex-col items-center text-gray-600 hover:text-red-600" target="_blank">
+                            <div class="social-icon bg-red-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-youtube text-red-500"></i>
+                            </div>
+                            YouTube
+                        </a>
+                        <a href="https://youtu.be/YgetiNkVyfM?si=I6kCoGxzD5S8_AOO" class="social-link flex flex-col items-center text-gray-600 hover:text-red-600" target="_blank">
+                            <div class="social-icon bg-red-100 rounded-full p-3 mb-2">
+                                <i class="fab fa-tiktok text-black-500"></i>
+                            </div>
+                            Tiktok
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Enhanced Typewriter Effect
+        const roles = ['Architect', 'Graphic Designer', 'Motion Graphics Artist'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let currentText = '';
+        let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                currentText = currentRole.substring(0, charIndex--);
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(type, 1000);
+                    return;
+                }
+            } else {
+                currentText = currentRole.substring(0, charIndex++);
+                if (charIndex > currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(type, 1500);
+                    return;
+                }
+            }
+            typewriterElement.textContent = currentText;
+            setTimeout(type, isDeleting ? 50 : 150);
+        }
+        type();
+
+        // CV Modal
+        const cvModal = document.getElementById('cvModal');
+        const cvLink = document.querySelector('.cv-link');
+        const closeModal = document.querySelector('.close-modal');
+
+        cvLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            cvModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            cvModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === cvModal) {
+                cvModal.style.display = 'none';
+            }
+        });
+
+        // Project Modal
+        const projectModal = document.getElementById('projectModal');
+        const modalClose = projectModal.querySelector('.close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const projectGallery = document.getElementById('project-gallery');
+
+        // Image arrays for each project
+        const projectImages = {
+            'cultural-center': [
+                'photos/cultural-center-design-1.jpg',
+                'photos/cultural-center-design-2.jpg',
+                'photos/cultural-center-design-3.jpg'
+            ],
+            'motion-graphics': [
+                'photos/motion-graphics-campaign-1.jpg',
+                'photos/motion-graphics-campaign-2.jpg',
+                'photos/motion-graphics-campaign-3.jpg'
+            ]
+        };
+
+        // Open project modal
+        document.querySelectorAll('.view-project').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const project = link.getAttribute('data-project');
+                const title = link.closest('.project-card').querySelector('h3').textContent;
+                modalTitle.textContent = title;
+
+                // Clear previous gallery
+                projectGallery.innerHTML = '';
+
+                // Populate gallery with project images
+                projectImages[project].forEach(img => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.alt = `${title} Image`;
+                    projectGallery.appendChild(imgElement);
+                });
+
+                projectModal.style.display = 'flex';
+            });
+        });
+
+        // Close project modal
+        modalClose.addEventListener('click', () => {
+            projectModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                projectModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
